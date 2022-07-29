@@ -7,6 +7,7 @@
 	<title>background position calc</title>
 	<style>
 		/*我是註解*/
+
 		/*使用*代表通用選擇器*/
 		*{color:rgb(172, 63, 154);}
 		/*for class*/
@@ -14,8 +15,10 @@
 		.linda {color:#fcba03;}
 		.mary {color:green;}
 		.paul {color:black;}
+
 		/*for id*/
 		#latest {color:blue;}
+
 		/*使用,代表群組選擇器*/
 		h1,h2,h3,h4,h5,h6{
 		font-family: 'Noto Sans TC', sans-serif;
@@ -23,22 +26,27 @@
 		p,a,span,li,label{
 		font-family: 'Open Sans', sans-serif;
 		color:rgb(40, 179, 81);}
+
 		/*屬性選擇器*/
 		div {color:black;}
 		div[title] {color: red;}
 		div[title=fishbecat] {color: green;}
 		div[title~=fishbecat’s] {color:blue;}
+
 		/*後代屬性選擇器*/
 		a {color:black;}
 		h1 a {color:red;}
 		#wrapper a {color:green;}
+
 		/*子選擇器*/
 		article > p {color:red;}
 		.mary p {color:black;}
 		#wa > p {color:aqua;}
+
 		/*同層相鄰選擇器*/
 		h1 {color:red;}
 		h1 + p {color:gray;}
+
 		/*文字屬性*/
 		p{color:rgba(252,186,3,0.8);
 		font-size:40px;
@@ -54,27 +62,35 @@
 		line-height: 1.5;}
 		
 		/*全部設定字體*/
-		body { font-family: verdana, Times New Roman, 新細明體, 微軟正黑體; }
+		body { font-family: verdana;}
 
 		/*css box*/
 		div {
 		background:red;
 		width: 200px;
 		height: 200px;
-		/*全部設定字體
+		/*排列*/
+		display: inline-block;
+		/*位置*/
+		position: relative;
+		top: 400px;
+		left: 400px;
+		/*邊界*/
 		overflow: hidden;
 		border: 5px solid black;
 		padding: 50px 10px 20px 40px;
-		margin: 50px;*/
-		display: inline-block;}
-		a{
-		display: block;}
+		margin: 50px;}
+
+		/*css box display*/
+		a {
+		background:red;
+		width: 200px;
+		height: 200px;
+		display: block;
+		overflow: hidden;
+		padding: 50px 10px 20px 40px;
+		margin: 50px;}
 		
-
-
-
-
-
 
 
 
@@ -141,6 +157,16 @@
 		</div>
 		<a>333</a>
 		<a>333</a>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

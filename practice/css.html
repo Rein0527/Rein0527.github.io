@@ -6,19 +6,141 @@
 
 	<title>background position calc</title>
 	<style>
-		  .emText { color:red;}
+		/*我是註解*/
+		/*使用*代表通用選擇器*/
+		*{color:rgb(172, 63, 154);}
+		/*for class*/
+		.emText {color:red;}
+		.linda {color:#fcba03;}
+		.mary {color:green;}
+		.paul {color:black;}
+		/*for id*/
+		#latest {color:blue;}
+		/*使用,代表群組選擇器*/
+		h1,h2,h3,h4,h5,h6{
+		font-family: 'Noto Sans TC', sans-serif;
+		color:pink;}
+		p,a,span,li,label{
+		font-family: 'Open Sans', sans-serif;
+		color:rgb(40, 179, 81);}
+		/*屬性選擇器*/
+		div {color:black;}
+		div[title] {color: red;}
+		div[title=fishbecat] {color: green;}
+		div[title~=fishbecat’s] {color:blue;}
+		/*後代屬性選擇器*/
+		a {color:black;}
+		h1 a {color:red;}
+		#wrapper a {color:green;}
+		/*子選擇器*/
+		article > p {color:red;}
+		.mary p {color:black;}
+		#wa > p {color:aqua;}
+		/*同層相鄰選擇器*/
+		h1 {color:red;}
+		h1 + p {color:gray;}
+		/*文字屬性*/
+		p{color:rgba(252,186,3,0.8);
+		font-size:40px;
+		letter-spacing: 10px;
+		line-height: 1.5;
+		font-weight: 500;
+		text-align:left;/*right ,center*/
+		font-family: '標楷體', sans-serif;}
+		
+		div {
+		font-family:Arial,'Times New Roman','Microsoft YaHei'; font:bold 12px/0.75em Arial,'Times New Roman','Microsoft YaHei';
+		font-size:40px;
+		line-height: 1.5;}
+		
+		/*全部設定字體*/
+		body { font-family: verdana, Times New Roman, 新細明體, 微軟正黑體; }
 
-		  .linda { color:#fcba03;}
-		  .mary {color:green;}
-		  .paul {color:black;}
+		/*css box*/
+		div {
+		background:red;
+		width: 200px;
+		height: 200px;
+		/*全部設定字體
+		overflow: hidden;
+		border: 5px solid black;
+		padding: 50px 10px 20px 40px;
+		margin: 50px;*/
+		display: inline-block;}
+		a{
+		display: block;}
+		
 
+
+
+
+
+
+
+
+
+
+
+
+
+		
 	</style>
 </head>
 <body>
-			<p class="emText">我是emText</p>
-			<p class="linda mary paul">123</p>
-			<p class="linda">123</p>
-			<p class="linda">123</p>
+		<!--
+		<tr>通用</tr>
+
+		<p class="emText">我是emText</p>
+		<p class="linda mary paul">123</p>
+		<p class="linda">123</p>
+		<p class="linda">123</p>
+
+		<p id="latest">此段套用藍色</p>
+		<li><span>
+			<a href="portfolio.html" target="_blank">See my portfolio</a>
+		</span></li>
+		<h1>See my portfolio</h1>
+
+		<div>此區套用黑色</div>
+		<div title="blog">此區套用紅色</div>
+		<div title="fishbecat">此區套用綠色</div>
+		<div title="fishbecat’s blog">此區套用藍色</div>
+	
+		<a>只設定a標籤套用黑色</a>
+		<h1><a>在h1裡a標籤套用紅色</a></h1>
+		<div id="wrapper"><a>在ID=wrapper裡a標籤套用綠色</a></div>
+
+		<div id="wrapper">
+		<p>在id=weapper區塊裡的段落套用紅色</p>
+		</div>
+
+		<article>
+			<p>123</p>
+		</article>
+		<p>AAAAA</p>
+		<div class="mary">
+			<p>Mary</p>
+		</div>
+		<div id="wa">
+			<p>wa</p>
+		</div>
+
+		<h1>標題1會套用紅色</h1>
+		<p>跟h1相鄰的p會套用灰色</p>
+		<p>沒有跟h1相鄰的p套用預設值</p>
+
+		<p>123<p>
+		<div>456</div>
+		<div><span style="font-family: verdana, Times New Roman, 新細明體, 微軟正黑體;">預設字形</span>-->
+
+		<div>
+			<a>box1</a>
+		</div>
+		<div>
+			<a>box2</a>
+		</div>
+		<a>333</a>
+		<a>333</a>
 
 </body>
 </html>

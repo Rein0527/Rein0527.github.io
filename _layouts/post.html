@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.summary | escape }}">
+  <title>{{ page.title }} — {{ site.data.settings.site_title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body class="post-page">
+  <header class="site-header"><div class="container nav"><a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark">{{ site.data.settings.site_title | slice: 0 | default: "J" }}</span><span>{{ site.data.settings.site_title }}</span></a><a class="back-link" href="{{ '/' | relative_url }}">← 返回日誌</a></div></header>
+  <main>
+    <article class="article container">
+      <header class="article-head">
+        <div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>{% if page.category %}<span>{{ page.category }}</span>{% endif %}</div>
+        <h1>{{ page.title }}</h1>
+        {% if page.summary %}<p>{{ page.summary }}</p>{% endif %}
+      </header>
+      {% if page.cover %}<img class="article-cover" src="{{ page.cover | relative_url }}" alt="">{% endif %}
+      <div class="article-content">{{ content }}</div>
+    </article>
+  </main>
+  <footer><div class="container footer-inner"><span>© {{ "now" | date: "%Y" }} {{ site.data.settings.site_title }}</span><a href="#">BACK TO TOP ↑</a></div></footer>
+  <script>const savedTheme=localStorage.getItem('journal-theme');if(savedTheme)document.documentElement.dataset.theme=savedTheme;</script>
+</body>
+</html>
+

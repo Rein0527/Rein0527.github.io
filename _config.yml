@@ -1,0 +1,7 @@
+lang: zh-TW
+timezone: Asia/Taipei
+permalink: /journal/:year/:month/:day/:title/
+markdown: kramdown
+exclude:
+  - README.md
+

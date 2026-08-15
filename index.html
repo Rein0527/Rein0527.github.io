@@ -1,97 +1,120 @@
----
-layout: null
----
 <!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ site.data.settings.intro_text | strip_html | escape }}">
-  <meta name="theme-color" content="#f5f1e8">
-  <title>{{ site.data.settings.site_title | escape }}</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#f3efe7">
+  <title>Journal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="page-glow" aria-hidden="true"></div>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="{{ '/' | relative_url }}">
-        <span class="brand-mark">{{ site.data.settings.site_title | slice: 0 | default: "J" }}</span>
-        <span>{{ site.data.settings.site_title }}</span>
-      </a>
-      <nav class="nav-links" aria-label="主要導覽">
+      <!-- 將 JOURNAL 改成你的網站名稱 -->
+      <a class="brand" href="#top"><span class="brand-dot"></span><span>JOURNAL</span></a>
+      <nav aria-label="主要導覽">
         <a href="#journal">日誌</a>
-        {% if site.data.settings.about_title != "" or site.data.settings.about_text != "" %}<a href="#about">關於</a>{% endif %}
-        <a class="admin-link" href="{{ '/admin/' | relative_url }}">管理</a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換深色模式"><span class="sun">☼</span><span class="moon">☾</span></button>
+        <a href="#about">關於</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換深色模式">
+          <span class="sun">☼</span><span class="moon">☾</span>
+        </button>
       </nav>
     </div>
   </header>
 
-  <main>
-    {% if site.data.settings.intro_title != "" or site.data.settings.intro_text != "" %}
+  <main id="top">
     <section class="hero container">
       <div class="hero-copy">
-        <p class="kicker"><span></span> PERSONAL JOURNAL</p>
-        <h1>{{ site.data.settings.intro_title }}</h1>
-        <p>{{ site.data.settings.intro_text }}</p>
+        <p class="eyebrow"><span></span> PERSONAL JOURNAL</p>
+        <!-- 在 h1 與下方 p 內填入首頁標題和簡介 -->
+        <h1 class="editable-space" aria-label="首頁標題預留位置"></h1>
+        <p class="hero-description editable-space" aria-label="首頁簡介預留位置"></p>
       </div>
-      <div class="hero-art" aria-hidden="true"><i></i><b></b></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit"></div>
+        <div class="sun-shape"></div>
+        <span class="art-index">00</span>
+      </div>
     </section>
-    {% endif %}
 
     <section class="journal container" id="journal">
       <div class="section-head">
-        <div><p class="kicker"><span></span> JOURNAL</p><h2>日誌</h2></div>
-        {% if site.posts.size > 0 %}
-        <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜尋日誌</span><input id="search-input" type="search" placeholder="搜尋文章"></label>
-        {% endif %}
+        <div><p class="eyebrow"><span></span> JOURNAL</p><h2>日誌</h2></div>
       </div>
 
-      {% assign categories = site.posts | map: "category" | compact | uniq %}
-      {% if categories.size > 0 %}
-      <div class="filter-row">
-        <button class="filter active" type="button" data-filter="all">全部</button>
-        {% for category in categories %}<button class="filter" type="button" data-filter="{{ category | escape }}">{{ category }}</button>{% endfor %}
-      </div>
-      {% endif %}
-
-      {% if site.posts.size > 0 %}
-      <div class="post-grid">
-        {% for post in site.posts %}
-        <article class="post-card{% if post.featured %} featured{% endif %}" data-category="{{ post.category | escape }}">
-          {% if post.cover %}<a class="cover" href="{{ post.url | relative_url }}"><img src="{{ post.cover | relative_url }}" alt=""></a>{% else %}<a class="cover cover-empty" href="{{ post.url | relative_url }}"><span>{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span></a>{% endif %}
+      <!--
+        新增文章時，複製一個 article.post-card 區塊。
+        目前只顯示空白模板卡，不含任何文章內容。
+      -->
+      <div class="post-grid" aria-label="文章版位">
+        <article class="post-card placeholder-card" aria-label="文章版位一">
+          <div class="card-visual"><span>01</span></div>
           <div class="card-body">
-            <div class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>{% if post.category %}<span>{{ post.category }}</span>{% endif %}</div>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            {% if post.summary %}<p>{{ post.summary }}</p>{% endif %}
-            <a class="text-link" href="{{ post.url | relative_url }}">閱讀文章 <span>→</span></a>
+            <div class="placeholder-line short"></div>
+            <div class="placeholder-line title"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line medium"></div>
           </div>
         </article>
-        {% endfor %}
+        <article class="post-card placeholder-card" aria-label="文章版位二">
+          <div class="card-visual tone-sage"><span>02</span></div>
+          <div class="card-body">
+            <div class="placeholder-line short"></div>
+            <div class="placeholder-line title"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line medium"></div>
+          </div>
+        </article>
+        <article class="post-card placeholder-card" aria-label="文章版位三">
+          <div class="card-visual tone-lilac"><span>03</span></div>
+          <div class="card-body">
+            <div class="placeholder-line short"></div>
+            <div class="placeholder-line title"></div>
+            <div class="placeholder-line"></div>
+            <div class="placeholder-line medium"></div>
+          </div>
+        </article>
       </div>
-      <p class="empty" id="empty" hidden>沒有找到符合的日誌。</p>
-      {% else %}
-      <div class="blank-state"><span>✦</span><p>目前尚未發布文章。</p><a href="{{ '/admin/' | relative_url }}">前往管理後台</a></div>
-      {% endif %}
     </section>
 
-    {% if site.data.settings.about_title != "" or site.data.settings.about_text != "" %}
-    <section class="about" id="about"><div class="container about-grid"><div><p class="kicker"><span></span> ABOUT</p><h2>{{ site.data.settings.about_title }}</h2></div><div class="about-copy">{{ site.data.settings.about_text | markdownify }}</div></div></section>
-    {% endif %}
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div><p class="eyebrow"><span></span> ABOUT</p><h2>關於</h2></div>
+        <!-- 在這個 div 內填入關於內容 -->
+        <div class="about-placeholder" aria-label="關於內容預留位置">
+          <div class="placeholder-line"></div>
+          <div class="placeholder-line"></div>
+          <div class="placeholder-line medium"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer><div class="container footer-inner"><span>© {{ "now" | date: "%Y" }} {{ site.data.settings.site_title }}</span><a href="#">BACK TO TOP ↑</a></div></footer>
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span></span>
+      <a href="#top">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
   <script>
-    const root=document.documentElement,themeButton=document.querySelector('#theme-toggle'),savedTheme=localStorage.getItem('journal-theme');
-    if(savedTheme)root.dataset.theme=savedTheme;
-    themeButton.addEventListener('click',()=>{const theme=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=theme;localStorage.setItem('journal-theme',theme)});
-    const search=document.querySelector('#search-input'),filters=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.post-card')],empty=document.querySelector('#empty');let category='all';
-    function updateCards(){if(!search)return;const query=search.value.trim().toLocaleLowerCase('zh-Hant');let count=0;cards.forEach(card=>{const show=(category==='all'||card.dataset.category===category)&&(!query||card.textContent.toLocaleLowerCase('zh-Hant').includes(query));card.hidden=!show;if(show)count++});empty.hidden=count>0}
-    filters.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.filter;filters.forEach(item=>item.classList.toggle('active',item===button));updateCards()}));if(search)search.addEventListener('input',updateCards);
+    const root = document.documentElement;
+    const button = document.querySelector('#theme-toggle');
+    const savedTheme = localStorage.getItem('journal-theme');
+    if (savedTheme) root.dataset.theme = savedTheme;
+    button.addEventListener('click', () => {
+      const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = theme;
+      localStorage.setItem('journal-theme', theme);
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

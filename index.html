@@ -3,105 +3,172 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rein 的個人日誌，記錄生活、想法與最近在做的事。">
-  <title>Rein's Journal</title>
+  <meta name="description" content="Rein 的個人日誌，記錄生活、靈感與正在進行的事。">
+  <meta name="theme-color" content="#f5f1e8">
+  <title>Rein — 日誌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="page-glow" aria-hidden="true"></div>
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="site-title" href="#top">Rein's Journal</a>
-      <nav aria-label="主要導覽"><a href="#journal">日誌</a><a href="#about">關於</a></nav>
+    <div class="container nav">
+      <a class="brand" href="#top"><span class="brand-mark">R</span><span>Rein's Journal</span></a>
+      <nav class="nav-links" aria-label="主要導覽">
+        <a href="#journal">日誌</a>
+        <a href="#about">關於</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換深色模式">
+          <span class="sun">☼</span><span class="moon">☾</span>
+        </button>
+      </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero container">
-      <p class="eyebrow">PERSONAL JOURNAL</p>
-      <h1>把日子慢慢記下來。</h1>
-      <p class="intro">這裡收集生活裡的小事、正在思考的問題，以及偶爾想留下來的片刻。</p>
+      <div class="hero-copy">
+        <p class="kicker"><span></span> PERSONAL JOURNAL</p>
+        <h1>收藏日常，<br><em>也收藏自己。</em></h1>
+        <p class="hero-text">記錄生活裡值得留下的小事、偶然出現的靈感，以及一路上緩慢成形的想法。</p>
+        <a class="primary-link" href="#journal">開始閱讀 <span>↘</span></a>
+      </div>
+      <aside class="today-card">
+        <div class="orb" aria-hidden="true"><span></span></div>
+        <p class="today-label">TODAY'S NOTE</p>
+        <blockquote>「普通的日子，也有值得被記住的片刻。」</blockquote>
+        <div class="today-footer"><span>TAIPEI</span><time id="today"></time></div>
+      </aside>
+    </section>
+
+    <section class="featured container" aria-labelledby="featured-title">
+      <article class="featured-card">
+        <div class="featured-visual">
+          <span class="shape shape-a"></span><span class="shape shape-b"></span>
+          <span class="featured-number">01</span>
+        </div>
+        <div class="featured-content">
+          <div class="post-meta"><span>精選日誌</span><time datetime="2026-08-15">2026.08.15</time></div>
+          <h2 id="featured-title">把生活整理成自己喜歡的樣子</h2>
+          <p>不一定要有宏大的故事才值得記錄。有時候，一杯咖啡、一段散步，或某個突然明白的瞬間，就足以成為一天的註腳。</p>
+          <button class="text-link open-post" type="button" data-post="featured">閱讀全文 <span>→</span></button>
+        </div>
+      </article>
     </section>
 
     <section class="journal container" id="journal" aria-labelledby="journal-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">LATEST NOTES</p><h2 id="journal-title">最近的日誌</h2></div>
-        <label class="search"><span class="sr-only">搜尋日誌</span><input id="search-input" type="search" placeholder="搜尋日誌…" autocomplete="off"></label>
+      <div class="section-head">
+        <div><p class="kicker"><span></span> RECENT STORIES</p><h2 id="journal-title">最近寫下的</h2></div>
+        <label class="search"><span class="sr-only">搜尋日誌</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="搜尋文章" autocomplete="off"></label>
       </div>
-      <div class="filters" aria-label="依分類篩選">
-        <button class="filter is-active" type="button" data-filter="all">全部</button>
+      <div class="filter-row" aria-label="依分類篩選">
+        <button class="filter active" type="button" data-filter="all">全部</button>
         <button class="filter" type="button" data-filter="生活">生活</button>
         <button class="filter" type="button" data-filter="隨筆">隨筆</button>
         <button class="filter" type="button" data-filter="記錄">記錄</button>
       </div>
-      <div class="entries">
-        <article class="entry" data-category="生活">
-          <div class="entry-meta"><time datetime="2026-08-15">2026.08.15</time><span>生活</span></div>
-          <h3>第一篇日誌</h3>
-          <p>這是一篇範例日誌。可以從最近發生的小事開始寫，不需要特別完整，只要留下當下真正想記住的內容。</p>
-          <button class="read-more" type="button" aria-expanded="false">繼續閱讀</button>
-          <div class="entry-more" hidden><p>以後可以直接複製這個區塊，修改日期、分類、標題和文字，就能新增一篇文章。簡單的格式，也比較容易長久維持。</p></div>
+
+      <div class="post-grid">
+        <article class="post-card" data-category="生活">
+          <div class="card-top tone-sand"><span>生活</span><b>02</b></div>
+          <div class="card-body">
+            <time datetime="2026-08-12">2026.08.12 · 3 MIN READ</time>
+            <h3>慢下來以後，看見的事情</h3>
+            <p>試著不把每一段空白都填滿，才發現生活原來有自己的節奏。</p>
+            <button class="text-link open-post" type="button" data-post="slow">繼續閱讀 <span>→</span></button>
+          </div>
         </article>
-        <article class="entry" data-category="記錄">
-          <div class="entry-meta"><time datetime="2026-08-10">2026.08.10</time><span>記錄</span></div>
-          <h3>最近在做的事</h3>
-          <p>整理手邊的計畫，也重新想了一次：哪些事情值得繼續投入，哪些可以先放下。把進度寫出來，思緒也會清楚一點。</p>
-          <button class="read-more" type="button" aria-expanded="false">繼續閱讀</button>
-          <div class="entry-more" hidden><p>這個版面適合更新近況、專案筆記或每週回顧。內容不需要很長，幾個段落就足夠。</p></div>
+        <article class="post-card" data-category="記錄">
+          <div class="card-top tone-sage"><span>記錄</span><b>03</b></div>
+          <div class="card-body">
+            <time datetime="2026-08-08">2026.08.08 · 4 MIN READ</time>
+            <h3>最近正在做的幾件事</h3>
+            <p>整理手邊的計畫，把真正重要的事情重新放回視線中央。</p>
+            <button class="text-link open-post" type="button" data-post="doing">繼續閱讀 <span>→</span></button>
+          </div>
         </article>
-        <article class="entry" data-category="隨筆">
-          <div class="entry-meta"><time datetime="2026-08-03">2026.08.03</time><span>隨筆</span></div>
-          <h3>留一點空白</h3>
-          <p>不是每一天都需要有明確的結論。有時候只是散步、聽歌，或安靜地坐一會，也都是生活的一部分。</p>
-          <button class="read-more" type="button" aria-expanded="false">繼續閱讀</button>
-          <div class="entry-more" hidden><p>日誌的意義不一定是整理出答案，也可以只是把一個普通的瞬間保存下來。</p></div>
+        <article class="post-card" data-category="隨筆">
+          <div class="card-top tone-lilac"><span>隨筆</span><b>04</b></div>
+          <div class="card-body">
+            <time datetime="2026-08-03">2026.08.03 · 2 MIN READ</time>
+            <h3>留一點空白給明天</h3>
+            <p>不是每一天都需要明確的結論，有些問題適合交給時間回答。</p>
+            <button class="text-link open-post" type="button" data-post="space">繼續閱讀 <span>→</span></button>
+          </div>
         </article>
       </div>
-      <p class="empty-state" id="empty-state" hidden>找不到符合的日誌。</p>
+      <p class="empty" id="empty" hidden>沒有找到符合的日誌。</p>
     </section>
 
     <section class="about" id="about">
-      <div class="container about-inner">
-        <p class="eyebrow">ABOUT</p><h2>關於這裡</h2>
-        <p>嗨，我是 Rein。這是一個簡單的個人日誌，用來記錄生活、想法和正在進行的事情。</p>
+      <div class="container about-grid">
+        <div><p class="kicker"><span></span> ABOUT THIS PLACE</p><h2>嗨，我是 Rein。</h2></div>
+        <div class="about-copy">
+          <p>這裡是一個安靜的個人角落。沒有固定主題，只記錄生活、想法、正在做的事情，還有那些不想忘記的片刻。</p>
+          <p>偶爾更新，慢慢累積。</p>
+        </div>
       </div>
     </section>
   </main>
-  <footer><div class="container footer-inner"><span>© <span id="year"></span> Rein</span><a href="#top">回到上方 ↑</a></div></footer>
+
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> REIN</span><p>Made for quiet moments.</p><a href="#top">BACK TO TOP ↑</a></div></footer>
+
+  <dialog id="post-dialog">
+    <button class="dialog-close" type="button" aria-label="關閉">×</button>
+    <div class="dialog-content"></div>
+  </dialog>
+
+  <template id="featured"><article><span class="dialog-tag">精選日誌</span><h2>把生活整理成自己喜歡的樣子</h2><p>生活不一定需要被安排得密不透風。最近開始試著刪去一些不再重要的事情，也留下更多時間給自己。</p><p>當步調慢下來，才看見原本被忽略的細節：窗邊光線的變化、熟悉街道上的新店，還有那些沒有目的卻很舒服的對話。</p><p>這是一篇範例文章。之後可以把這裡換成你真正想記錄的內容。</p></article></template>
+  <template id="slow"><article><span class="dialog-tag">生活</span><h2>慢下來以後，看見的事情</h2><p>試著不把每一段空白都填滿，才發現生活原來有自己的節奏。</p><p>有時候休息不是停滯，而是在重新辨認自己真正想前往的方向。</p></article></template>
+  <template id="doing"><article><span class="dialog-tag">記錄</span><h2>最近正在做的幾件事</h2><p>把手邊的計畫一件件寫下來，再誠實地決定哪些值得繼續，哪些可以先放下。</p><p>比起一次完成很多事，現在更想把少數重要的事情做好。</p></article></template>
+  <template id="space"><article><span class="dialog-tag">隨筆</span><h2>留一點空白給明天</h2><p>不是每一天都需要明確的結論。有些想法只是暫時經過，有些問題則適合交給時間回答。</p><p>留一點空白，也是在替新的可能保留位置。</p></article></template>
 
   <script>
-    const searchInput = document.querySelector('#search-input');
+    const root = document.documentElement;
+    const themeButton = document.querySelector('#theme-toggle');
+    const savedTheme = localStorage.getItem('journal-theme');
+    if (savedTheme) root.dataset.theme = savedTheme;
+    themeButton.addEventListener('click', () => {
+      const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = theme;
+      localStorage.setItem('journal-theme', theme);
+    });
+
+    const search = document.querySelector('#search-input');
     const filters = [...document.querySelectorAll('.filter')];
-    const entries = [...document.querySelectorAll('.entry')];
-    const emptyState = document.querySelector('#empty-state');
-    let activeFilter = 'all';
-    function updateEntries() {
-      const query = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
-      let visibleCount = 0;
-      entries.forEach((entry) => {
-        const show = (activeFilter === 'all' || entry.dataset.category === activeFilter)
-          && (!query || entry.textContent.toLocaleLowerCase('zh-Hant').includes(query));
-        entry.hidden = !show;
-        if (show) visibleCount += 1;
+    const cards = [...document.querySelectorAll('.post-card')];
+    const empty = document.querySelector('#empty');
+    let category = 'all';
+    function updateCards() {
+      const query = search.value.trim().toLocaleLowerCase('zh-Hant');
+      let count = 0;
+      cards.forEach(card => {
+        const show = (category === 'all' || card.dataset.category === category) && (!query || card.textContent.toLocaleLowerCase('zh-Hant').includes(query));
+        card.hidden = !show;
+        if (show) count++;
       });
-      emptyState.hidden = visibleCount !== 0;
+      empty.hidden = count > 0;
     }
-    filters.forEach((button) => button.addEventListener('click', () => {
-      activeFilter = button.dataset.filter;
-      filters.forEach((item) => item.classList.toggle('is-active', item === button));
-      updateEntries();
+    filters.forEach(button => button.addEventListener('click', () => {
+      category = button.dataset.filter;
+      filters.forEach(item => item.classList.toggle('active', item === button));
+      updateCards();
     }));
-    document.querySelectorAll('.read-more').forEach((button) => button.addEventListener('click', () => {
-      const content = button.nextElementSibling;
-      const willOpen = content.hidden;
-      content.hidden = !willOpen;
-      button.setAttribute('aria-expanded', String(willOpen));
-      button.textContent = willOpen ? '收起內容' : '繼續閱讀';
+    search.addEventListener('input', updateCards);
+
+    const dialog = document.querySelector('#post-dialog');
+    const dialogContent = dialog.querySelector('.dialog-content');
+    document.querySelectorAll('.open-post').forEach(button => button.addEventListener('click', () => {
+      dialogContent.replaceChildren(document.querySelector('#' + button.dataset.post).content.cloneNode(true));
+      dialog.showModal();
     }));
-    searchInput.addEventListener('input', updateEntries);
-    document.querySelector('#year').textContent = new Date().getFullYear();
+    dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+
+    const now = new Date();
+    document.querySelector('#today').textContent = new Intl.DateTimeFormat('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit' }).format(now);
+    document.querySelector('#year').textContent = now.getFullYear();
   </script>
 </body>
 </html>
